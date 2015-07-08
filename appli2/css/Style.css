@@ -1,0 +1,98 @@
+/* CSS Document */
+* {
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+body {overflow:hidden;}
+#page {
+	width:1536px;
+	height:2048px;
+	background-image:url(../img/decor.png);
+	
+}
+.hovered {
+	transition:all 0.2s linear;
+	background-color:rgba(51,153,153,0.50);
+}
+/* zones principales decors */
+
+.decors {
+	position:absolute;
+	/*background-color: rgba(255, 0, 0, 0.5);*/
+}
+
+#grenier {
+  top: 30px;
+  left: 550px;
+  width: 490px;
+  height: 490px;
+  border-radius: 490px;
+}
+#gargouilles {}
+.gargouille1 {
+  position: absolute;
+  top: 350px;
+  left: 210px;
+  width: 310px;
+  height: 310px;
+  border-radius: 350px;
+}
+.gargouille2 {
+  position: absolute;
+  top: 350px;
+  left: 1100px;
+  width: 350px;
+  height: 350px;
+  border-radius: 350px;
+}
+#arbre {
+  position: absolute;
+  top: 750px;
+  left: 810px;
+  width: 650px;
+  height: 650px;
+  border-radius: 650px;
+}
+#jardin {
+  position: absolute;
+  top: 1410px;
+  left: 210px;
+  width: 1326px;
+  height: 185px;
+}
+#caves {
+  position: absolute;
+  top: 1600px;
+  width: 100%;
+  height: 440px;
+}
+.cave1 {
+  position: absolute;
+  top: 30px;
+  left: 230px;
+  width: 580px;
+  height: 420px;
+  border-radius: 225px 215px 0px 0px;
+}
+.cave2 {
+  position: absolute;
+  top: 60px;
+  left: 860px;
+  width: 536px;
+  height: 390px;
+  border-radius: 225px 245px 0px 0px;
+}
+#menu_animaux {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 210px;
+  background-color: rgba(51, 153, 153, 0.28);
+  z-index: 1;
+  height: 1593px;
+}
+#menu_animaux img {
+  display: block;
+  margin: 70px auto;
+}
