@@ -1,6 +1,663 @@
 // JavaScript Document
 
 $(document).ready(function(e) {
+
+// Délai d'apparition des bestioles
+var delaiAraignee = 2000;
+var delaiChouette = 8000;
+var delaiSouris = 3000;
+var delaiMouche = 1000;
+var delaiMesange = 4000;
+var delaiChauvesouris = 5000;
+var delaiEcureuil = 4000;
+var delaiFourmi = 1000;
+var delaiPapillon = 2000;
+
+
+//Nbre total d'apparition
+var totalAraignee = 100;
+var totalChouette = 0;
+var totalSouris = 0;
+var totalMouche = 100;
+var totalMesange = 4;
+var totalChauvesouris = 1;
+var totalEcureuil = 4;
+var totalFourmi = 100;
+var totalPapillon = 5;
+
+
+// Predation dans le Grenier
+function predaGreChouette(){
+	// counter : arrivé à x, on crée une chouette
+	var counterArMo = 0;
+	var counterSo = 0;
+	
+	//slice : On démarre à 1 araignée mangée par cycle
+	//Ce nombre augmente de 1 dès qu'une nouvelle chouette est créée
+	var sliceArMo = 1;
+	var sliceSo = 1;
+
+//cycle de prédation Chouette => araignee et mouche
+	
+	
+		var timer = setInterval(function() {
+			
+			if($("#grenier").find(".araignee, .mouche, .souris").length > 0){
+
+			$('#grenier .araignee,#grenier .mouche').slice(0,sliceArMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterArMo >= 10) {
+				creaGreChouette();	
+				
+				// on réinitialise le compteur
+				counterArMo = 0;
+				sliceArMo += 1;
+			}			
+	}else{
+		//alert('pas de proie, les chouettes se barrent');
+		$('#grenier .chouette').fadeOut('fast', function(){
+			$(this).remove();
+			});
+		clearInterval(timer);
+		}
+	}, delaiChouette);
+	
+//cycle de predation Chouette => Souris
+var timer2 = setInterval(function() {
+	if($("#grenier").find(".araignee, .mouche, .souris").length > 0){
+    $("#grenier .souris").slice(0,sliceSo).fadeOut('fast',function(){
+		$(this).remove();
+		})
+
+    counterSo += 1;
+    if (counterSo >= 10) {
+		creaGreChouette();	
+		
+        // on réinitialise le compteur
+        counterSo = 0;
+		sliceSo += 1;
+    }
+}else{
+		//alert('pas de proie, les chouettes se barrent');
+		$('#grenier .chouette').fadeOut('fast', function(){
+			$(this).remove();
+			});
+		clearInterval(timer);
+		}
+}, delaiChouette);
+
+}
+
+function predaGreSouris(){
+	// counter : arrivé à 10, on crée une chouette
+	var counterArMo = 0;
+	var counterSo = 0;
+	
+	//slice : On démarre à 1 araignée mangée par cycle
+	//Ce nombre augmente de 1 dès qu'une nouvelle chouette est créée
+	var sliceArMo = 1;
+
+//cycle de prédation souris => araignee et mouche
+	
+		var timer = setInterval(function() {
+			if($('#grenier').find(".araignee, .mouche").length > 0){
+			//alert('y a des araignees');
+			$('#grenier .araignee,#grenier .mouche').slice(0,sliceArMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterArMo >= 10) {
+				creaGreSouris();	
+				
+				// on réinitialise le compteur
+				counterArMo = 0;
+				//sliceArMo += 1;
+			}			
+	}else{
+		$('#grenier .souris').fadeOut('fast', function(){
+			$(this).remove();
+			});
+		clearInterval(timer);
+		}
+	}, delaiSouris);
+}
+
+function predaGreAraignee(){
+	// counter : arrivé à x, on crée une bête
+	var counterMo = 0;
+	
+	//slice : On démarre à 1 bete mangée par cycle
+	//Ce nombre augmente de 1 dès qu'un nouveau prédateur est créé
+	var sliceMo = 1;
+
+//cycle de prédation araignee => mouche
+	
+	var timer = setInterval(function() {
+			if($('#grenier').find(".mouche").length > 0){
+			//alert('y a des araignees');
+			$('#grenier .mouche').slice(0,sliceMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterMo >= 10) {	
+				
+				// on réinitialise le compteur
+				counterMo = 0;
+				sliceMo += 1;
+			}			
+		}
+	}, delaiAraignee);
+}
+
+
+
+
+// Predation Gargouilles
+
+function predaGarChauveSouris(){
+	// counter : arrivé à x, on crée une bestiole
+	var counterArMo = 0;
+	var counterSo = 0;
+	
+	//slice : On démarre à 1 proie mangée par cycle
+	//Ce nombre augmente de 1 dès qu'un predateur est créé
+	var sliceArMo = 1;
+	var sliceSo = 1;
+
+//cycle de prédation ChauveSouris => araignee et mouche	
+		var timer = setInterval(function() {
+			
+			if($("#gargouilles").find(".araignee, .mouche, .mesange").length > 0){
+
+			$('#gargouilles .araignee,#gargouilles .mouche, #gargouilles .mesange').slice(0,sliceArMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterArMo >= 10) {
+				creaGarChauvesouris();	
+				
+				// on réinitialise le compteur
+				counterArMo = 0;
+				sliceArMo += 1;
+			}			
+	}else{
+		//alert('pas de proie, les chouettes se barrent');
+		$('#gargouilles .chauvesouris').fadeOut('fast', function(){
+			$(this).remove();
+			});
+		clearInterval(timer);
+		}
+	}, delaiChauvesouris);
+	
+}
+
+function predaGarMesange(){
+	// counter : arrivé à 10, on crée une chouette
+	var counterArMo = 0;
+	var counterSo = 0;
+	
+	//slice : On démarre à 1 araignée mangée par cycle
+	//Ce nombre augmente de 1 dès qu'une nouvelle bête est créée
+	var sliceArMo = 1;
+
+//cycle de prédation mesange => araignee et mouche
+	
+		var timer = setInterval(function() {
+			if($('#gargouilles').find(".araignee, .mouche").length > 0){
+			$('#gargouilles .araignee,#gargouilles .mouche').slice(0,sliceArMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterArMo >= 10) {
+				creaGarMesange();	
+				
+				// on réinitialise le compteur
+				counterArMo = 0;
+				//sliceArMo += 1;
+			}			
+	}else{
+		$('#gargouilles .mesange').fadeOut('fast', function(){
+			$(this).remove();
+			});
+		clearInterval(timer);
+		}
+	}, delaiMesange);
+}
+
+function predaGarAraignee(){
+	var counterMo = 0;
+	var sliceMo = 1;
+//cycle de prédation araignee => mouche	
+	var timer = setInterval(function() {
+			if($('#gargouilles').find(".mouche").length > 0){
+			//alert('y a des araignees');
+			$('#gargouilles .mouche').slice(0,sliceMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterMo += 1;
+			if (counterMo >= 10) {		
+				// on réinitialise le compteur
+				counterMo = 0;
+				sliceMo += 1;
+			}			
+		}
+	}, delaiAraignee);
+}
+
+
+
+
+
+// Predation Cave
+function predaCavChauveSouris(){
+	var counterArMo = 0;
+	var counterSo = 0;
+	var sliceArMo = 1;
+	var sliceSo = 1;
+
+//cycle de prédation ChauveSouris => araignee et mouche	et fourmi
+		var timer = setInterval(function() {
+			
+			if($("#caves").find(".araignee, .mouche, .fourmi").length > 0){
+
+			$('#caves .araignee,#caves .mouche, #caves .fourmi').slice(0,sliceArMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterArMo >= 10) {
+				creaCavChauvesouris();		
+				// on réinitialise le compteur
+				counterArMo = 0;
+				sliceArMo += 1;
+			}			
+	}else{
+		//alert('pas de proie, les chouettes se barrent');
+		$('#caves .chauvesouris').fadeOut('fast', function(){
+			$(this).remove();
+			});
+		clearInterval(timer);
+		}
+	}, delaiChauvesouris);	
+}
+
+function predaCavSouris(){
+	var counterArMo = 0;
+	var counterSo = 0;
+	var sliceArMo = 1;
+
+//cycle de prédation souris => araignee et fourmi
+	
+		var timer = setInterval(function() {
+			if($('#caves').find(".araignee, .fourmi").length > 0){
+			$('#caves .araignee,#caves .fourmi').slice(0,sliceArMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterArMo >= 10) {
+				creaCavSouris();	
+				counterArMo = 0;
+				//sliceArMo += 1;
+			}			
+	}else{
+		$('#caves .mesange').fadeOut('fast', function(){
+			$(this).remove();
+			});
+		clearInterval(timer);
+		}
+	}, delaiSouris);
+}
+
+function predaCavAraignee(){
+	var counterMo = 0;
+	var sliceMo = 1;
+	var timer = setInterval(function() {
+			if($('#caves').find(".fourmi").length > 0){
+			$('#caves .fourmi').slice(0,sliceMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterMo >= 10) {		
+				counterMo = 0;
+				sliceMo += 1;
+			}			
+		}
+	}, delaiAraignee);
+}
+
+
+// Predation Jardin
+function predaJarEcureuil(){
+	var counterArMo = 0;
+	var counterSo = 0;
+	var sliceArMo = 1;
+	var sliceSo = 1;
+
+//cycle de prédation ecureuil => araignee et mouche	et fourmi et papillon
+		var timer = setInterval(function() {
+			
+			if($("#jardin").find(".araignee, .mouche, .fourmi, .papillon").length > 0){
+
+			$('#jardin .araignee, #jardin .mouche, #jardin .fourmi, #jardin .papillon').slice(0,sliceArMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterArMo >= 10) {
+				creaJarEcureuil();		
+				counterArMo = 0;
+				sliceArMo += 1;
+			}			
+	}else{
+		$('#jardin .ecureuil').fadeOut('fast', function(){
+			$(this).remove();
+			});
+		clearInterval(timer);
+		}
+	}, delaiEcureuil);	
+}
+
+function predaJarMesange(){
+	var counterArMo = 0;
+	var counterSo = 0;
+	var sliceArMo = 1;
+	
+		var timer = setInterval(function() {
+			if($('#jardin').find(".araignee, .mouche, .fourmi, .papillon").length > 0){
+			$('#jardin .araignee, #jardin .mouche, #jardin .fourmi, #jardin .papillon').slice(0,sliceArMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterArMo >= 10) {
+				creaJarMesange();	
+				counterArMo = 0;
+				sliceArMo += 1;
+			}			
+	}else{
+		$('#jardin .mesange').fadeOut('fast', function(){
+			$(this).remove();
+			});
+		clearInterval(timer);
+		}
+	}, delaiMesange);
+}
+
+function predaJarAraignee(){
+	var counterMo = 0;
+	var sliceMo = 1;
+	var timer = setInterval(function() {
+			if($('#jardin').find(".fourmi,.mouche,.papillon").length > 0){
+			$('#jardin .fourmi,#jardin .mouche,#jardin .papillon').slice(0,sliceMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterMo >= 10) {		
+				counterMo = 0;
+				sliceMo += 1;
+			}			
+		}
+	}, delaiAraignee);
+}
+
+// Predation arbre
+function predaArbChouette(){
+	var counterArMo = 0;
+	var counterSo = 0;
+	var sliceArMo = 1;
+	var sliceSo = 1;
+
+//cycle de prédation chouette => chauvesouris araignee et mesange et ecureuil et papillon
+		var timer = setInterval(function() {
+			
+			if($("#arbre").find(".araignee, .mesange, .chauvesouris, .papillon, .ecureuil").length > 0){
+
+			$('#arbre .araignee, #arbre .mesange, #arbre .chauvesouris, #arbre .papillon, #arbre .ecureuil').slice(0,sliceArMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterArMo >= 10) {
+				creaArbChouette();		
+				counterArMo = 0;
+				sliceArMo += 1;
+			}			
+	}else{
+		$('#arbre .chouette').fadeOut('fast', function(){
+			$(this).remove();
+			});
+		clearInterval(timer);
+		}
+	}, delaiChouette);	
+}
+
+function predaArbChauveSouris(){
+	var counterArMo = 0;
+	var counterSo = 0;
+	var sliceArMo = 1;
+	var sliceSo = 1;
+
+//cycle de prédation chauvesouris =>araignee et mesange et ecureuil et papillon
+		var timer = setInterval(function() {
+			
+			if($("#arbre").find(".araignee, .mesange, .papillon, .ecureuil").length > 0){
+
+			$('#arbre .araignee, #arbre .mesange, #arbre .papillon, #arbre .ecureuil').slice(0,sliceArMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterArMo >= 10) {
+				creaArbChauveSouris();		
+				counterArMo = 0;
+				sliceArMo += 1;
+			}			
+	}else{
+		$('#arbre .chauvesouris').fadeOut('fast', function(){
+			$(this).remove();
+			});
+		clearInterval(timer);
+		}
+	}, delaiChauvesouris);	
+}
+
+function predaArbMesange(){
+	var counterArMo = 0;
+	var counterSo = 0;
+	var sliceArMo = 1;
+	var sliceSo = 1;
+
+//cycle de prédation mesange =>araignee et papillon
+		var timer = setInterval(function() {
+			
+			if($("#arbre").find(".araignee, .papillon").length > 0){
+
+			$('#arbre .araignee, #arbre .papillon').slice(0,sliceArMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterArMo >= 10) {
+				creaArbMesange();		
+				counterArMo = 0;
+				sliceArMo += 1;
+			}			
+	}else{
+		$('#arbre .mesange').fadeOut('fast', function(){
+			$(this).remove();
+			});
+		clearInterval(timer);
+		}
+	}, delaiMesange);	
+}
+
+function predaArbEcureuil(){
+	var counterArMo = 0;
+	var counterSo = 0;
+	var sliceArMo = 1;
+	var sliceSo = 1;
+
+//cycle de prédation ecureuil =>araignee et papillon
+		var timer = setInterval(function() {
+			
+			if($("#arbre").find(".araignee, .papillon").length > 0){
+
+			$('#arbre .araignee, #arbre .papillon').slice(0,sliceArMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterArMo >= 10) {
+				creaArbEcureuil();		
+				counterArMo = 0;
+				sliceArMo += 1;
+			}			
+	}else{
+		$('#arbre .mesange').fadeOut('fast', function(){
+			$(this).remove();
+			});
+		clearInterval(timer);
+		}
+	}, delaiEcureuil);	
+}
+
+function predaArbAraignee(){
+	var counterMo = 0;
+	var sliceMo = 1;
+	var timer = setInterval(function() {
+			if($('#arbre').find(".papillon").length > 0){
+			$('#arbre .papillon').slice(0,sliceMo).fadeOut('fast',function(){
+				$(this).remove();
+				})		
+			counterArMo += 1;
+			if (counterMo >= 10) {		
+				counterMo = 0;
+				sliceMo += 1;
+			}			
+		}
+	}, delaiAraignee);
+}
+
+// Génération des predateurs après ingestion de proies
+function creaGreChouette(){
+	$('<img class="chouette" src="img/chouette.png" />').css({
+	'position':'absolute',
+	'top': (Math.random() * ($('#grenier').height() - $('.chouette').height())).toFixed()+'px',
+	'left': (Math.random() * ($('#grenier').width() - $('.chouette').width())).toFixed()+'px'
+	}).appendTo('#grenier').addClass("animated tada");
+}
+// Génération des souris après ingestion de proies
+function creaGreSouris(){
+	$('<img class="souris" src="img/mouse.png" />').css({
+	'position':'absolute',
+	'top': (Math.random() * ($('#grenier').height() - $('.souris').height())).toFixed()+'px',
+	'left': (Math.random() * ($('#grenier').width() - $('.souris').width())).toFixed()+'px'
+	}).appendTo('#grenier').addClass("animated tada");
+}
+// Génération des ChauveSouris après ingestion de proies
+function creaGarChauvesouris(){	
+	var gargNumber = Math.random() * (3 - 1) + 1;
+	if (gargNumber > 2){
+		var garg = '.gargouille1';	
+	}else{
+		var garg = '.gargouille2';
+	}	
+	$('<img class="chauvesouris" src="img/chauvesouris.png" />').css({
+	'position':'absolute',
+	'top': (Math.random() * ($('.gargouille1,.gargouille2').height() - $('.chauvesouris').height())).toFixed()+'px',
+	'left': (Math.random() * ($('.gargouille1,.gargouille2').width() - $('.chauvesouris').width())).toFixed()+'px'
+	}).appendTo(garg).addClass("animated tada");
+}
+// Génération des mesanges après ingestion de proies
+function creaGarMesange(){	
+	var gargNumber = Math.random() * (3 - 1) + 1;
+	if (gargNumber > 2){
+		var garg = '.gargouille1';	
+	}else{
+		var garg = '.gargouille2';
+	}	
+	$('<img class="mesange" src="img/mesange.png" />').css({
+	'position':'absolute',
+	'top': (Math.random() * ($('.gargouille1,.gargouille2').height() - $('.mesange').height())).toFixed()+'px',
+	'left': (Math.random() * ($('.gargouille1,.gargouille2').width() - $('.mesange').width())).toFixed()+'px'
+	}).appendTo(garg).addClass("animated tada");
+}
+// Génération des ChauveSouris après ingestion de proies
+function creaCavChauvesouris(){	
+	var gargNumber = Math.random() * (3 - 1) + 1;
+	if (gargNumber > 2){
+		var garg = '.cave1';	
+	}else{
+		var garg = '.cave2';
+	}	
+	$('<img class="chauvesouris" src="img/chauvesouris.png" />').css({
+	'position':'absolute',
+	'top': (Math.random() * ($('.cave1,.cave2').height() - $('.chauvesouris').height())).toFixed()+'px',
+	'left': (Math.random() * ($('.cave1,.cave2').width() - $('.chauvesouris').width())).toFixed()+'px'
+	}).appendTo(garg).addClass("animated tada");
+}
+// Génération des souris après ingestion de proies
+function creaCavSouris(){
+	var gargNumber = Math.random() * (3 - 1) + 1;
+	if (gargNumber > 2){
+		var garg = '.cave1';	
+	}else{
+		var garg = '.cave2';
+	}
+	$('<img class="souris" src="img/mouse.png" />').css({
+	'position':'absolute',
+	'top': (Math.random() * ($('#caves').height() - $('.souris').height())).toFixed()+'px',
+	'left': (Math.random() * ($('#caves').width() - $('.souris').width())).toFixed()+'px'
+	}).appendTo(garg).addClass("animated tada");
+}
+// Génération des predateurs après ingestion de proies
+function creaJarEcureuil(){
+	$('<img class="ecureuil" src="img/ecureuil.png" />').css({
+	'position':'absolute',
+	'top': (Math.random() * ($('#jardin').height() - $('.ecureuil').height())).toFixed()+'px',
+	'left': (Math.random() * ($('#jardin').width() - $('.ecureuil').width())).toFixed()+'px'
+	}).appendTo('#jardin').addClass("animated tada");
+}
+// Génération des mesanges après ingestion de proies
+function creaJarMesange(){
+	$('<img class="mesange" src="img/mesange.png" />').css({
+	'position':'absolute',
+	'top': (Math.random() * ($('#jardin').height() - $('.mesange').height())).toFixed()+'px',
+	'left': (Math.random() * ($('#jardin').width() - $('.mesange').width())).toFixed()+'px'
+	}).appendTo('#jardin').addClass("animated tada");
+}
+// Génération des predateurs après ingestion de proies
+function creaArbChouette(){
+	$('<img class="chouette" src="img/chouette.png" />').css({
+	'position':'absolute',
+	'top': (Math.random() * ($('#arbre').height() - $('.chouette').height())).toFixed()+'px',
+	'left': (Math.random() * ($('#arbre').width() - $('.chouette').width())).toFixed()+'px'
+	}).appendTo('#arbre').addClass("animated tada");
+}
+// Génération des predateurs après ingestion de proies
+function creaArbChauveSouris(){
+	$('<img class="chauvesouris" src="img/chauvesouris.png" />').css({
+	'position':'absolute',
+	'top': (Math.random() * ($('#arbre').height() - $('.chauvesouris').height())).toFixed()+'px',
+	'left': (Math.random() * ($('#arbre').width() - $('.chauvesouris').width())).toFixed()+'px'
+	}).appendTo('#arbre').addClass("animated tada");
+}
+// Génération des predateurs après ingestion de proies
+function creaArbMesange(){
+	$('<img class="mesange" src="img/mesange.png" />').css({
+	'position':'absolute',
+	'top': (Math.random() * ($('#arbre').height() - $('.mesange').height())).toFixed()+'px',
+	'left': (Math.random() * ($('#arbre').width() - $('.mesange').width())).toFixed()+'px'
+	}).appendTo('#arbre').addClass("animated tada");
+}
+// Génération des predateurs après ingestion de proies
+function creaArbEcureuil(){
+	$('<img class="ecureuil" src="img/ecureuil.png" />').css({
+	'position':'absolute',
+	'top': (Math.random() * ($('#arbre').height() - $('.ecureuil').height())).toFixed()+'px',
+	'left': (Math.random() * ($('#arbre').width() - $('.ecureuil').width())).toFixed()+'px'
+	}).appendTo('#arbre').addClass("animated tada");
+}
+
+
+
+
+// Les fonctions au drop
 	
 function grenierDrop( event, ui ) {
 	ui.draggable.clone().css({
@@ -8,11 +665,12 @@ function grenierDrop( event, ui ) {
 		'top': (Math.random() * ($('#grenier').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('#grenier').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#grenier').addClass("animated tada");
-			
+		
 	var counterGreAr = 0;
 	var counterGreCh = 0;
 	var counterGreSo = 0;
 	var counterGreMo = 0;
+	
 
 // Création d'araignées dans le grenier
 if (ui.draggable.hasClass('araignee')){
@@ -22,12 +680,18 @@ if (ui.draggable.hasClass('araignee')){
 		'top': (Math.random() * ($('#grenier').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('#grenier').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#grenier').addClass("animated tada");
+		
+		//quand l'araignee arrive, on retire des proies
+		predaGreAraignee()
+		
 		counterGreAr += 1;
-		if (counterGreAr >= 9) {
+		if (counterGreAr >= totalAraignee) {
 		// Kill the timer after 10 times
-		clearInterval(timerAr);
+		//clearInterval(timerAr);
+		counterGreAr = 0;
+		
     }
-}, 2000);
+}, delaiAraignee);
 }
 
 // Création de chouettes dans le grenier	
@@ -38,12 +702,17 @@ if (ui.draggable.hasClass('chouette')){
 		'top': (Math.random() * ($('#grenier').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('#grenier').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#grenier').addClass("animated tada");
+		
+		
+		//quand la chouette arrive, on retire des proies
+		predaGreChouette();
+		
 		counterGreCh += 1;
-		if (counterGreCh >= 2) {
-		// Kill the timer after 10 times
+		if (counterGreCh >= totalChouette) {
+
 		clearInterval(timerCh);
     }
-}, 5000 /* In ms. So it's 2 seconds */);
+}, delaiChouette);
 }
 
 // Création de souris dans le grenier	
@@ -54,12 +723,16 @@ if (ui.draggable.hasClass('souris')){
 		'top': (Math.random() * ($('#grenier').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('#grenier').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#grenier').addClass("animated tada");
+		
+		//quand la souris arrive, on retire des proies
+		predaGreSouris();
+		
 		counterGreSo += 1;
-		if (counterGreSo >= 4) {
-		// Kill the timer after 10 times
+		if (counterGreSo >= totalSouris) {
+
 		clearInterval(timerSo);
     }
-}, 3000 /* In ms. So it's 2 seconds */);
+}, delaiSouris);
 }		
 
 // Création de mouches dans le grenier	
@@ -71,11 +744,12 @@ if (ui.draggable.hasClass('mouche')){
 		'left': (Math.random() * ($('#grenier').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#grenier').addClass("animated tada");
 		counterGreMo += 1;
-		if (counterGreMo >= 9) {
+		if (counterGreMo >= totalMouche) {
 		// Kill the timer after 10 times
-		clearInterval(timer);
+		//clearInterval(timer);
+		counterGreMo = 0;
     }
-}, 1000 /* In ms. So it's 2 seconds */);
+}, delaiMouche);
 }		
 }
 
@@ -106,7 +780,6 @@ if (ui.draggable.hasClass('araignee')){
 	var timer = setInterval(function() {
 		
 		var gargNumber = Math.random() * (3 - 1) + 1;
-	//alert(gargNumber);
 	if (gargNumber > 2){
 		var garg = '.gargouille1';	
 	}else{
@@ -118,11 +791,13 @@ if (ui.draggable.hasClass('araignee')){
 		'top': (Math.random() * ($('.gargouille1,.gargouille2').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('.gargouille1,.gargouille2').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo(garg).addClass("animated tada");
+		
+		predaGarAraignee();
 		counterGargAr += 1;
-		if (counterGargAr >= 9) {
+		if (counterGargAr >= totalAraignee) {
 		clearInterval(timer);
     }
-}, 2000 /* In ms. So it's 2 seconds */);
+}, delaiAraignee);
 }
 
 // Création de mesanges sur les gargouilles
@@ -142,12 +817,14 @@ if (ui.draggable.hasClass('mesange')){
 		'top': (Math.random() * ($('.gargouille1,.gargouille2').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('.gargouille1,.gargouille2').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo(garg).addClass("animated tada");
+		
+		predaGarMesange();
 		counterGargMe += 1;
-		if (counterGargMe >= 5) {
+		if (counterGargMe >= totalMesange) {
 
 		clearInterval(timer);
     }
-}, 3000);
+}, delaiMesange);
 }
 
 // Création de mouches sur les gargouilles
@@ -167,11 +844,11 @@ if (ui.draggable.hasClass('mouche')){
 		'left': (Math.random() * ($('.gargouille1,.gargouille2').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo(garg).addClass("animated tada");
 		counterGargMo += 1;
-		if (counterGargMo >= 8) {
+		if (counterGargMo >= totalMouche) {
 
 		clearInterval(timer);
     }
-}, 1000);
+}, delaiMouche);
 }
 
 // Création de chauve-souris sur les gargouilles
@@ -190,12 +867,15 @@ if (ui.draggable.hasClass('chauvesouris')){
 		'top': (Math.random() * ($('.gargouille1,.gargouille2').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('.gargouille1,.gargouille2').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo(garg).addClass("animated tada");
+		
+		predaGarChauveSouris();
+		
 		counterGargCs += 1;
-		if (counterGargCs >= 2) {
+		if (counterGargCs >= totalChauvesouris) {
 
 		clearInterval(timer);
     }
-}, 6000);
+}, delaiChauvesouris);
 }
 
 }
@@ -223,12 +903,14 @@ if (ui.draggable.hasClass('araignee')){
 		'top': (Math.random() * ($('#arbre').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('#arbre').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#arbre').addClass("animated tada");
+		
+		predaArbAraignee();
 		nAraignee += 1;
-		if (nAraignee >= 9) {
+		if (nAraignee >= totalAraignee) {
 		
 		clearInterval(timer);
     }
-}, 2000);
+}, delaiAraignee);
 }
 
 // Création de chouettes dans l'arbre	
@@ -239,12 +921,14 @@ if (ui.draggable.hasClass('chouette')){
 		'top': (Math.random() * ($('#arbre').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('#arbre').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#arbre').addClass("animated tada");
+		
+		predaArbChouette();
 		nChouette += 1;
-		if (nChouette >= 3) {
+		if (nChouette >= totalChouette) {
 
 		clearInterval(timer);
     }
-}, 5000);
+}, delaiChouette);
 }
 
 // Création de chauvesouris dans l'arbre
@@ -255,12 +939,14 @@ if (ui.draggable.hasClass('chauvesouris')){
 		'top': (Math.random() * ($('#arbre').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('#arbre').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#arbre').addClass("animated tada");
+		
+		predaArbChauveSouris();
 		nChauveSouris += 1;
-		if (nChauveSouris >= 2) {
+		if (nChauveSouris >= totalChauvesouris) {
 
 		clearInterval(timer);
     }
-}, 3000);
+}, delaiChauvesouris);
 }		
 
 // Création de ecureuils dans l'arbre
@@ -271,12 +957,14 @@ if (ui.draggable.hasClass('ecureuil')){
 		'top': (Math.random() * ($('#arbre').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('#arbre').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#arbre').addClass("animated tada");
+		
+		predaArbEcureuil();
 		nEcureuil += 1;
-		if (nEcureuil >= 4) {
+		if (nEcureuil >= totalEcureuil) {
 
 		clearInterval(timer);
     }
-}, 3000);
+}, delaiEcureuil);
 }
 
 // Création de mesanges dans l'arbre
@@ -287,12 +975,14 @@ if (ui.draggable.hasClass('mesange')){
 		'top': (Math.random() * ($('#arbre').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('#arbre').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#arbre').addClass("animated tada");
+		
+		predaArbMesange();
 		nMesange += 1;
-		if (nMesange >= 5) {
+		if (nMesange >= totalMesange) {
 
 		clearInterval(timer);
     }
-}, 4000);
+}, delaiMesange);
 }		
 
 // Création de papillons dans l'arbre	
@@ -304,11 +994,11 @@ if (ui.draggable.hasClass('papillon')){
 		'left': (Math.random() * ($('#arbre').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#arbre').addClass("animated tada");
 		nPapillon += 1;
-		if (nPapillon >= 7) {
+		if (nPapillon >= totalPapillon) {
 
 		clearInterval(timer);
     }
-}, 3000);
+}, delaiPapillon);
 }
 		
 }
@@ -331,15 +1021,17 @@ if (ui.draggable.hasClass('araignee')){
 		'top': (Math.random() * ($('#jardin').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('#jardin').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#jardin').addClass("animated tada");
+		
+		predaJarAraignee();
 		nbestioles += 1;
-		if (nbestioles >= 9) {
+		if (nbestioles >= totalAraignee) {
 		
 		clearInterval(timer);
     }
-}, 2000);
+}, delaiAraignee);
 }
 
-// Création de chouettes dans l'jardin	
+// Création de souris dans l'jardin	
 if (ui.draggable.hasClass('souris')){
 	var timer = setInterval(function() {
 		ui.draggable.clone().css({
@@ -347,12 +1039,14 @@ if (ui.draggable.hasClass('souris')){
 		'top': (Math.random() * ($('#jardin').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('#jardin').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#jardin').addClass("animated tada");
+		
+		predaJarSouris();
 		nbestioles += 1;
-		if (nbestioles >= 3) {
+		if (nbestioles >= totalSouris) {
 
 		clearInterval(timer);
     }
-}, 5000);
+}, delaiSouris);
 }
 
 // Création de mouches dans l'jardin
@@ -364,11 +1058,11 @@ if (ui.draggable.hasClass('mouche')){
 		'left': (Math.random() * ($('#jardin').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#jardin').addClass("animated tada");
 		nbestioles += 1;
-		if (nbestioles >= 2) {
+		if (nbestioles >= totalMouche) {
 
 		clearInterval(timer);
     }
-}, 3000);
+}, delaiMouche);
 }		
 
 // Création de ecureuils dans l'jardin
@@ -379,12 +1073,14 @@ if (ui.draggable.hasClass('ecureuil')){
 		'top': (Math.random() * ($('#jardin').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('#jardin').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#jardin').addClass("animated tada");
+		
+		predaJarEcureuil();
 		nbestioles += 1;
-		if (nbestioles >= 4) {
+		if (nbestioles >= totalEcureuil) {
 
 		clearInterval(timer);
     }
-}, 3000);
+}, delaiEcureuil);
 }
 
 // Création de fourmis dans l'jardin
@@ -396,11 +1092,11 @@ if (ui.draggable.hasClass('fourmi')){
 		'left': (Math.random() * ($('#jardin').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#jardin').addClass("animated tada");
 		nbestioles += 1;
-		if (nbestioles >= 5) {
+		if (nbestioles >= totalFourmi) {
 
 		clearInterval(timer);
     }
-}, 4000);
+}, delaiFourmi);
 }		
 
 // Création de papillons dans l'jardin
@@ -412,11 +1108,11 @@ if (ui.draggable.hasClass('papillon')){
 		'left': (Math.random() * ($('#jardin').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo('#jardin').addClass("animated tada");
 		nbestioles += 1;
-		if (nbestioles >= 7) {
+		if (nbestioles >= totalPapillon) {
 
 		clearInterval(timer);
     }
-}, 3000);
+}, delaiPapillon);
 }
 		
 }
@@ -444,7 +1140,6 @@ if (ui.draggable.hasClass('araignee')){
 	var timer = setInterval(function() {
 		
 		var caveNumber = Math.random() * (3 - 1) + 1;
-	//alert(gargNumber);
 	if (caveNumber > 2){
 		var cav = '.cave1';	
 	}else{
@@ -456,20 +1151,21 @@ if (ui.draggable.hasClass('araignee')){
 		'top': (Math.random() * ($('.cave1,.cave2').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('.cave1,.cave2').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo(cav).addClass("animated tada");
+		
+		predaCavAraignee();
 		nbestioles += 1;
-		if (nbestioles >= 9) {
+		if (nbestioles >= totalAraignee) {
 		
 		clearInterval(timer);
     }
-}, 2000);
+}, delaiAraignee);
 }
 
-// Création de chouettes dans .cave1,.cave2	
+// Création de souris dans .cave1,.cave2	
 if (ui.draggable.hasClass('souris')){
 	var timer = setInterval(function() {
 		
 		var caveNumber = Math.random() * (3 - 1) + 1;
-	//alert(gargNumber);
 	if (caveNumber > 2){
 		var cav = '.cave1';	
 	}else{
@@ -481,15 +1177,17 @@ if (ui.draggable.hasClass('souris')){
 		'top': (Math.random() * ($('.cave1,.cave2').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('.cave1,.cave2').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo(cav).addClass("animated tada");
+		
+		predaCavSouris();
 		nbestioles += 1;
-		if (nbestioles >= 3) {
+		if (nbestioles >= totalSouris) {
 
 		clearInterval(timer);
     }
-}, 5000);
+}, delaiSouris);
 }
 
-// Création de mouches dans .cave1,.cave2
+// Création de chauvesouris dans .cave1,.cave2
 if (ui.draggable.hasClass('chauvesouris')){
 	var timer = setInterval(function() {
 		
@@ -506,15 +1204,17 @@ if (ui.draggable.hasClass('chauvesouris')){
 		'top': (Math.random() * ($('.cave1,.cave2').height() - ui.draggable.height())).toFixed()+'px',
 		'left': (Math.random() * ($('.cave1,.cave2').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo(cav).addClass("animated tada");
+		
+		predaCavChauveSouris();
 		nbestioles += 1;
-		if (nbestioles >= 2) {
+		if (nbestioles >= totalChauvesouris) {
 
 		clearInterval(timer);
     }
-}, 3000);
+}, delaiChauvesouris);
 }		
 
-// Création de ecureuils dans .cave1,.cave2
+// Création de fourmi dans .cave1,.cave2
 if (ui.draggable.hasClass('fourmi')){
 	var timer = setInterval(function() {
 		
@@ -532,11 +1232,11 @@ if (ui.draggable.hasClass('fourmi')){
 		'left': (Math.random() * ($('.cave1,.cave2').width() - ui.draggable.width())).toFixed()+'px'
 		}).appendTo(cav).addClass("animated tada");
 		nbestioles += 1;
-		if (nbestioles >= 4) {
+		if (nbestioles >= totalFourmi) {
 
 		clearInterval(timer);
     }
-}, 3000);
+}, delaiFourmi);
 }
 }
 
