@@ -15,14 +15,14 @@ var delaiPapillon = 2000;
 
 
 //Nbre total d'apparition
-var totalAraignee = 100;
+var totalAraignee = 50;
 var totalChouette = 0;
 var totalSouris = 0;
-var totalMouche = 100;
-var totalMesange = 4;
+var totalMouche = 50;
+var totalMesange = 1;
 var totalChauvesouris = 1;
-var totalEcureuil = 4;
-var totalFourmi = 100;
+var totalEcureuil = 0;
+var totalFourmi = 50;
 var totalPapillon = 5;
 
 
@@ -301,7 +301,7 @@ function predaCavSouris(){
 				//sliceArMo += 1;
 			}			
 	}else{
-		$('#caves .mesange').fadeOut('fast', function(){
+		$('#caves .souris').fadeOut('fast', function(){
 			$(this).remove();
 			});
 		clearInterval(timer);
@@ -508,7 +508,7 @@ function predaArbEcureuil(){
 				sliceArMo += 1;
 			}			
 	}else{
-		$('#arbre .mesange').fadeOut('fast', function(){
+		$('#arbre .ecureuil').fadeOut('fast', function(){
 			$(this).remove();
 			});
 		clearInterval(timer);
