@@ -17,42 +17,42 @@ $(document).ready(function(e) {
   //drop chouette
   $('#drop1').droppable( {
 	accept: '#drag1',
-	hoverClass: 'hovered',
+	hoverClass: 'hovered2',
 	drop: dropZone
 	
   });
   //drop souris
   $('#drop2').droppable( {
 	accept: '#drag6',
-	hoverClass: 'hovered',
+	hoverClass: 'hovered2',
 	drop: dropZone2
 	
   });
   //drop mesange
   $('#drop3').droppable( {
 	accept: '#drag4',
-	hoverClass: 'hovered',
+	hoverClass: 'hovered2',
 	drop: dropZone3
 	
   });
   //drop araignée
   $('#drop4').droppable( {
 	accept: '#drag3',
-	hoverClass: 'hovered',
+	hoverClass: 'hovered2',
 	drop: dropZone4
 	
   });
   //drop fourmi
   $('#drop5').droppable( {
 	accept: '#drag5',
-	hoverClass: 'hovered',
+	hoverClass: 'hovered2',
 	drop: dropZone5
 	
   });
   //drop papillon
   $('#drop6').droppable( {
 	accept: '#drag2',
-	hoverClass: 'hovered',
+	hoverClass: 'hovered2',
 	drop: dropZone6
 	
   }); 

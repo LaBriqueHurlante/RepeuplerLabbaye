@@ -21,7 +21,7 @@ a {
 #page_jeu1 {
 	width:1536px;
 	height:2048px;
-	background-image: url(../img/jeu1/chaine-alimentaire2.jpg);	
+	background-image: url(../img/jeu1/chaine-alimentaire2.png);	
 }
 
 /* NAV */
@@ -32,6 +32,13 @@ a {
   left: 0px;
   width: 250px;
   height: 250px;
+}
+#retour2 {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 200px;
+  height: 210px;
 }
 
 /* Présentation */
