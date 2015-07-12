@@ -5,12 +5,132 @@
 	box-sizing:border-box;
 }
 body {overflow:hidden;}
+
+ul {
+list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
 #page {
 	width:1536px;
 	height:2048px;
-	background-image:url(../img/decor.png);
-	
+	background-image:url(../img/decor.png);	
 }
+#page_jeu1 {
+	width:1536px;
+	height:2048px;
+	background-image: url(../img/jeu1/chaine-alimentaire2.jpg);	
+}
+
+/* NAV */
+
+#retour {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 250px;
+  height: 250px;
+}
+
+/* Présentation */
+
+#pres_ul {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 320px;
+  text-align: center;
+}
+#pres_ul li {
+  display: inline-block;
+  width: 583px;
+  height: 224px;
+  margin: 0 30px;
+}
+#pres_ul li a {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+
+
+/* Jeu 1 */
+
+.jeu1_ul {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+#interrog_ul img {
+position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+#drag_ul {
+  width: 100%;
+}
+#drag_ul li {
+  display: inline-block;
+  width: 16%;
+}
+#drag_ul .drag_img {
+  width: 246px;
+}
+#drop_ul {
+  top: 0px;
+  right: 0px;
+}
+#drop_ul li {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+#drop_ul #drop1 {
+  top: 720px;
+  left: 140px;
+  width: 240px;
+  height: 370px;
+}
+#drop_ul #drop2 {
+  top: 590px;
+  left: 1020px;
+  width: 400px;
+  height: 230px;
+}
+#drop_ul #drop3 {
+  top: 800px;
+  left: 770px;
+  width: 270px;
+  height: 180px;
+}
+#drop_ul #drop4 {
+  top: 1030px;
+  left: 500px;
+  width: 250px;
+  height: 240px;
+}
+#drop_ul #drop5 {
+  top: 1410px;
+  left: 420px;
+  width: 240px;
+  height: 180px;
+}
+#drop_ul #drop6 {
+  top: 1380px;
+  left: 1030px;
+  width: 270px;
+  height: 200px;
+}
+
+/* Jeu2 */
+
 .hovered {
 	transition:all 0.2s linear;
 	background-color:rgba(51,153,153,0.50);
