@@ -3,24 +3,24 @@
 $(document).ready(function(e) {
 
 // Délai d'apparition des bestioles en seconde
-var delaiAraignee = 7500;
-var delaiChouette = 20000;
-var delaiSouris = 8000;
-var delaiMouche = 3500;
-var delaiMesange = 8000;
-var delaiChauvesouris = 17000;
-var delaiEcureuil = 8000;
-var delaiFourmi = 3500;
-var delaiPapillon = 3500;
+var delaiAraignee = 25000;
+var delaiChouette = 50000;
+var delaiSouris = 26000;
+var delaiMouche = 17000;
+var delaiMesange = 26000;
+var delaiChauvesouris = 44000;
+var delaiEcureuil = 24000;
+var delaiFourmi = 17000;
+var delaiPapillon = 17000;
 
 // Cycle de rajout des Prédateurs
 // ex : au bout de cb de cycles une nouvelle chouette apparait
 var cycleAraignee = 1;
 var cycleChouette = 10;
-var cycleSouris = 10;
-var cycleMesange = 10;
+var cycleSouris = 5;
+var cycleMesange = 5;
 var cycleChauvesouris = 5;
-var cycleEcureuil = 10;
+var cycleEcureuil = 8;
 
 //Nombre de proies avalées par cycle
 var mangeAraignee = 1;
@@ -855,7 +855,7 @@ if (ui.draggable.hasClass('mouche')){
 		if (counterGreMo >= totalMouche) {
 		// Kill the timer after 10 times
 		clearInterval(timer);
-		counterGreMo = 0;
+		//counterGreMo = 0;
     }
 }, delaiMouche);
 }		
