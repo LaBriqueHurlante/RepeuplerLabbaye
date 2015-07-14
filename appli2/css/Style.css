@@ -16,12 +16,14 @@ a {
 #page {
 	width:1536px;
 	height:2048px;
-	background-image:url(../img/decor.png);	
+	background-image:url(../img/decor.png);
+	position:relative;
 }
 #page_jeu1 {
 	width:1536px;
 	height:2048px;
 	background-image: url(../img/jeu1/chaine-alimentaire2.png);	
+	position:relative;
 }
 
 /* NAV */
